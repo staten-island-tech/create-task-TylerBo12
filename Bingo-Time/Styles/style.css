@@ -1,3 +1,19 @@
-#body{
-  background-color: aqua;
+*,html,body{
+  box-sizing: border-box;
+  font-size: 62.5%;
+  margin: 0%;
+  padding: 0%;
+}
+
+body{
+  background-color: #fbffff;
+}
+
+#parent{
+  background-color: #102056;
+  width: 50rem;
+  height: 50rem;
+  border: solid #f6550b 2rem;
+  border-radius: 1rem ;
+  
 }
