@@ -5,3 +5,5 @@ const bingoCard = {
   ],
   card2: [],
 };
+
+export { bingoCard };

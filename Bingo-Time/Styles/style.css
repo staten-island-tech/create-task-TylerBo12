@@ -35,3 +35,8 @@ body{
   margin: auto;
   margin-top: 2rem;
 }
+
+.child{
+  font-size: 5rem;
+  background-color: aquamarine;
+}
