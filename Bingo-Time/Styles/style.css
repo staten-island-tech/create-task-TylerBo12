@@ -6,37 +6,48 @@
 }
 
 body{
-  background-color: #fbffff;
+  background-color: var(--bodyBacco);
 }
 
 #parent{
-  background-color: #102056;
+  background-color: var(--defaultBacco);
   width: 70rem;
   height: 70rem;
-  border: solid #f6550b 2rem;
+  border: solid var(--defaultBorder) 2rem;
   border-radius: 1rem;
   display: flex;
   justify-content: center;
   align-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
   margin: auto;
   margin-top: 10rem;
   margin-bottom: 5rem;
   
 }
 
+
+
+.child{
+  font-size: 15rem;
+  background-color: var(--orange);
+  height: 10rem;
+  width: 10rem;
+  border-radius: 5rem;
+  display: flex;
+  margin: auto;
+  justify-content: center;
+}
+
 #title{
-  background-color: #102056;
-  color: #fbffff;
+  background-color: var(--defaultBacco);
+  color: var(--bodyBacco);
   font-size: 30rem;
   display: flex;
   justify-content: center;
+  
   border-radius: 5rem;
   width: 150rem;
   margin: auto;
   margin-top: 2rem;
-}
-
-.child{
-  font-size: 5rem;
-  background-color: aquamarine;
 }

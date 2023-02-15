@@ -1,15 +1,14 @@
 import "../Styles/style.css";
+import "../Styles/variables.css";
 import { DOMSelectors } from "./DOMselectors";
 import { bingoCard } from "./array";
 
 const bingoBalls = function () {
-  bingoCard.forEach((card) => {
-    card.forEach((number) => {
-      DOMSelectors.parent.insertAdjacentHTML(
-        "beforeend",
-        '<div id="parent"><sub class="child"></sub></div>'
-      );
-    });
+  bingoCard.card1.forEach((number) => {
+    DOMSelectors.parent.insertAdjacentHTML(
+      "beforeend",
+      '<sub class="child">1</sub>'
+    );
   });
 };
 
