@@ -26,17 +26,19 @@ body{
   
 }
 
-
-
 .child{
-  font-size: 15rem;
+  font-size: 12rem;
   background-color: var(--orange);
-  height: 10rem;
-  width: 10rem;
-  border-radius: 5rem;
+  height: 11rem;
+  width: 11rem;
+  border-radius: 4rem;
   display: flex;
   margin: auto;
+  margin-left: 1rem ;
+  margin-right: 1rem;
+  margin-bottom: 1.5rem;
   justify-content: center;
+  align-items: center ;
 }
 
 #title{
