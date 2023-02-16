@@ -3,6 +3,8 @@ import "../Styles/variables.css";
 import { DOMSelectors } from "./DOMselectors";
 import { bingoCard } from "./array";
 
+let Counter = 25;
+
 const partsOfBingo = {
   bingoBalls: function () {
     bingoCard.card1.forEach((number) => {
@@ -33,6 +35,23 @@ const partsOfBingo = {
     }
   },
 
+  rollCounter: function () {
+    console.log(--Counter);
+    while (--Counter <= 25) {
+      partsOfBingo.display();
+      return Counter;
+    }
+  },
+
+  display: function () {
+    DOMSelectors.buttonContainer.insertAdjacentHTML(
+      "beforeend",
+      `
+         ${--Counter}`
+    );
+    return Counter;
+  },
+
   removeNumbers: function () {
     const numbers = document.querySelectorAll(".child");
     const numbersArray = Array.from(numbers);
@@ -45,3 +64,4 @@ const partsOfBingo = {
 partsOfBingo.randomNumber();
 partsOfBingo.bingoBalls();
 partsOfBingo.noDupes();
+partsOfBingo.rollCounter();
