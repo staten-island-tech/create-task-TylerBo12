@@ -27,11 +27,11 @@ body{
 }
 
 .child{
-  font-size: 12rem;
+  font-size: 10rem;
   background-color: var(--orange);
   height: 11rem;
   width: 11rem;
-  border-radius: 4rem;
+  border-radius: 3.5rem;
   display: flex;
   margin: auto;
   margin-left: 1rem ;
@@ -44,12 +44,37 @@ body{
 #title{
   background-color: var(--defaultBacco);
   color: var(--bodyBacco);
-  font-size: 30rem;
+  font-size: 20rem;
   display: flex;
   justify-content: center;
-  
   border-radius: 5rem;
-  width: 150rem;
+  border: solid var(--defaultBorder) 2rem;
+  width: 140rem;
   margin: auto;
   margin-top: 2rem;
+}
+
+#buttonContainer{
+  display: flex;
+  justify-content: center;
+
+}
+
+.pickNumber, .generateCard{
+  width: 50rem;
+  height: 25rem;  
+  margin-top: 5rem;
+  margin-right: 5rem;
+  margin-left : 5rem;
+  font-size: 8rem;
+  color: var(--bodyBacco);
+  background-color: var(--defaultBacco);
+  border-radius: 1rem;
+  border: solid var(--defaultBorder) 2rem;
+  transition: 0.5s;
+  
+}
+
+.pickNumber:hover, .generateCard:hover{
+ transform: scale(1.15,1.15 );
 }
