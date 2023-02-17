@@ -3,7 +3,7 @@ import "../Styles/variables.css";
 import { DOMSelectors } from "./DOMselectors";
 import { bingoCard } from "./array";
 
-let Counter = 25;
+let Counter = 5;
 
 const partsOfBingo = {
   bingoBalls: function () {
@@ -37,14 +37,15 @@ const partsOfBingo = {
 
   rollCounter: function () {
     console.log(Counter);
-    while (Counter <= 25 && Counter > 0) {
+    while (Counter <= 25 && Counter >= 0) {
       partsOfBingo.display();
       return Counter;
     }
-    if ((Counter = 0)) {
-      const parent = document.querySelector("#parent");
-      parent.remove();
-      console.log();
+    while (Counter === 0) {
+      console.log("AhaHAHAH!");
+      const Element = document.querySelectorAll(".child");
+      Element.remove();
+      DOMSelectors.parent.insertAdjacentHTML("beforeend", `Game Over :(`);
     }
   },
 
@@ -74,4 +75,3 @@ DOMSelectors.pickNumber.addEventListener("click", function () {
 partsOfBingo.randomNumber();
 partsOfBingo.bingoBalls();
 partsOfBingo.noDupes();
-partsOfBingo.rollCounter();
