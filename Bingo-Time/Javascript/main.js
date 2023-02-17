@@ -31,15 +31,20 @@ const partsOfBingo = {
 
   noDupes: function () {
     if (partsOfBingo.generateRandom(90) === 1) {
-      this.removeNumbers();
+      partsOfBingo.removeNumbers();
     }
   },
 
   rollCounter: function () {
-    console.log(--Counter);
-    while (--Counter <= 25) {
+    console.log(Counter);
+    while (Counter <= 25 && Counter > 0) {
       partsOfBingo.display();
       return Counter;
+    }
+    if ((Counter = 0)) {
+      const parent = document.querySelector("#parent");
+      parent.remove();
+      console.log();
     }
   },
 
@@ -47,19 +52,24 @@ const partsOfBingo = {
     DOMSelectors.buttonContainer.insertAdjacentHTML(
       "beforeend",
       `
-         ${--Counter}`
+         <p class="counter">${Counter--}</p>`
     );
     return Counter;
   },
 
   removeNumbers: function () {
-    const numbers = document.querySelectorAll(".child");
+    const numbers = document.querySelectorAll(".counter");
     const numbersArray = Array.from(numbers);
     numbersArray.forEach((number) => {
       number.remove();
     });
   },
 };
+
+DOMSelectors.pickNumber.addEventListener("click", function () {
+  partsOfBingo.removeNumbers();
+  partsOfBingo.rollCounter();
+});
 
 partsOfBingo.randomNumber();
 partsOfBingo.bingoBalls();

@@ -60,6 +60,10 @@ body{
 
 }
 
+.counter{
+  font-size: 10rem;
+}
+
 .pickNumber, .generateCard{
   width: 50rem;
   height: 25rem;  
