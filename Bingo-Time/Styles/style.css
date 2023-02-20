@@ -64,6 +64,11 @@ body{
   font-size: 10rem;
 }
 
+.gameOver{
+  color: aliceblue;
+  font-size: 10rem;
+}
+
 .pickNumber, .generateCard{
   width: 50rem;
   height: 25rem;  

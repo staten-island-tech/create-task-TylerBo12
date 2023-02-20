@@ -31,21 +31,22 @@ const partsOfBingo = {
 
   noDupes: function () {
     if (partsOfBingo.generateRandom(90) === 1) {
-      partsOfBingo.removeNumbers();
+      partsOfBingo.removeItems();
     }
   },
 
   rollCounter: function () {
     console.log(Counter);
-    while (Counter <= 25 && Counter >= 0) {
+    while (Counter <= 25 && Counter > 0) {
       partsOfBingo.display();
       return Counter;
     }
-    while (Counter === 0) {
-      console.log("AhaHAHAH!");
-      const Element = document.querySelectorAll(".child");
-      Element.remove();
-      DOMSelectors.parent.insertAdjacentHTML("beforeend", `Game Over :(`);
+    if (Counter === 0) {
+      partsOfBingo.removeItems(".child");
+      DOMSelectors.parent.insertAdjacentHTML(
+        "beforeend",
+        `<p class = "gameOver">Game Over :(</p>`
+      );
     }
   },
 
@@ -58,8 +59,8 @@ const partsOfBingo = {
     return Counter;
   },
 
-  removeNumbers: function () {
-    const numbers = document.querySelectorAll(".counter");
+  removeItems: function (Items) {
+    const numbers = document.querySelectorAll(Items);
     const numbersArray = Array.from(numbers);
     numbersArray.forEach((number) => {
       number.remove();
@@ -68,7 +69,7 @@ const partsOfBingo = {
 };
 
 DOMSelectors.pickNumber.addEventListener("click", function () {
-  partsOfBingo.removeNumbers();
+  partsOfBingo.removeItems(".counter");
   partsOfBingo.rollCounter();
 });
 
