@@ -17,16 +17,25 @@ const partsOfBingo = {
 
   generateRandom: function (max) {
     const randomInteger = Math.floor(Math.random() * max);
-    /* console.log(randomInteger); */
     return randomInteger;
+  },
+
+  display: function () {
+    DOMSelectors.counterContainer.insertAdjacentHTML(
+      "beforeend",
+      `
+         <p class="counter"># of rolls left: ${Counter--}</p>`
+    );
+    return Counter;
   },
 
   randomNumber: function () {
     const roll = partsOfBingo.generateRandom(90);
-    console.log(roll);
-    if (roll === partsOfBingo.generateRandom(90)) {
-      alert("Hello");
-    }
+    partsOfBingo.removeItems(".roll");
+    DOMSelectors.counterContainer.insertAdjacentHTML(
+      "beforeend",
+      `<p class = "roll">Your Roll: ${roll}</p>`
+    );
   },
 
   noDupes: function () {
@@ -43,20 +52,12 @@ const partsOfBingo = {
     }
     if (Counter === 0) {
       partsOfBingo.removeItems(".child");
+      partsOfBingo.removeItems(".gameOver");
       DOMSelectors.parent.insertAdjacentHTML(
         "beforeend",
         `<p class = "gameOver">Game Over :(</p>`
       );
     }
-  },
-
-  display: function () {
-    DOMSelectors.buttonContainer.insertAdjacentHTML(
-      "beforeend",
-      `
-         <p class="counter">${Counter--}</p>`
-    );
-    return Counter;
   },
 
   removeItems: function (Items) {
@@ -71,8 +72,13 @@ const partsOfBingo = {
 DOMSelectors.pickNumber.addEventListener("click", function () {
   partsOfBingo.removeItems(".counter");
   partsOfBingo.rollCounter();
+  partsOfBingo.randomNumber();
 });
 
-partsOfBingo.randomNumber();
+DOMSelectors.generateCard.addEventListener("click", function () {
+  partsOfBingo.removeItems(".child");
+  partsOfBingo.bingoBalls();
+  partsOfBingo.noDupes();
+});
+
 partsOfBingo.bingoBalls();
-partsOfBingo.noDupes();
