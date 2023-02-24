@@ -3,15 +3,21 @@ import "../Styles/variables.css";
 import { DOMSelectors } from "./DOMselectors";
 import { bingoCard } from "./array";
 
-let Counter = 5;
+let Counter = 25;
 
 const partsOfBingo = {
-  bingoBalls: function () {
+  bingoBalls: async function () {
     bingoCard.card1.forEach((number) => {
       DOMSelectors.parent.insertAdjacentHTML(
         "beforeend",
-        `<sub class="child">${partsOfBingo.generateRandom(90)}</sub>`
+        `<sub class="child">${uniques}</sub>`
       );
+    });
+  },
+
+  promises: function (Time) {
+    new Promise((resolveFirst) => {
+      setTimeout(resolveFirst, Time);
     });
   },
 
@@ -30,22 +36,26 @@ const partsOfBingo = {
   },
 
   randomNumber: function () {
-    const roll = partsOfBingo.generateRandom(90);
+    const roll = partsOfBingo.generateRandom(20);
     partsOfBingo.removeItems(".roll");
     DOMSelectors.counterContainer.insertAdjacentHTML(
       "beforeend",
       `<p class = "roll">Your Roll: ${roll}</p>`
     );
+    console.log(roll);
+    if (roll === uniques) {
+      console.log("pain");
+      partsOfBingo.removeItems(".child");
+    }
   },
 
   noDupes: function () {
-    if (partsOfBingo.generateRandom(90) === 1) {
+    if ((partsOfBingo.generateRandom(90) === 90, 1)) {
       partsOfBingo.removeItems();
     }
   },
 
   rollCounter: function () {
-    console.log(Counter);
     while (Counter <= 25 && Counter > 0) {
       partsOfBingo.display();
       return Counter;
@@ -77,8 +87,11 @@ DOMSelectors.pickNumber.addEventListener("click", function () {
 
 DOMSelectors.generateCard.addEventListener("click", function () {
   partsOfBingo.removeItems(".child");
+  partsOfBingo.removeItems(".gameOver");
   partsOfBingo.bingoBalls();
-  partsOfBingo.noDupes();
 });
 
+let uniques = new Set([partsOfBingo.generateRandom(90)]);
+console.log(uniques);
 partsOfBingo.bingoBalls();
+partsOfBingo.noDupes();
