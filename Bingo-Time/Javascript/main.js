@@ -22,8 +22,8 @@ const partsOfBingo = {
   },
 
   generateRandom: function (max) {
-    const randomInteger = Math.floor(Math.random() * max);
-    return randomInteger;
+    const index = Math.round(Math.random() * max.length - 1);
+    return max[index];
   },
 
   display: function () {
@@ -49,7 +49,7 @@ const partsOfBingo = {
     }
   },
 
-  test: function (minimum = 1, maximum = 90) {
+  numberList: function (minimum = 1, maximum = 90) {
     return Array.from({ length: maximum - minimum + 1 }).map(
       (unused, index) => index + minimum
     );
