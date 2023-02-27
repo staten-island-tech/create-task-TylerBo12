@@ -10,7 +10,7 @@ const partsOfBingo = {
     bingoCard.card1.forEach((number) => {
       DOMSelectors.parent.insertAdjacentHTML(
         "beforeend",
-        `<sub class="child">${partsOfBingo.generateRandom(90)}</sub>`
+        `<sub class="child">${partsOfBingo.generateRandom(20)}</sub>`
       );
     });
   },
@@ -22,8 +22,8 @@ const partsOfBingo = {
   },
 
   generateRandom: function (max) {
-    const index = Math.round(Math.random() * max.length - 1);
-    return max[index];
+    const index = Math.round(Math.random() * max);
+    return index;
   },
 
   display: function () {
@@ -43,7 +43,7 @@ const partsOfBingo = {
       `<p class = "roll">Your Roll: ${roll}</p>`
     );
     console.log(roll);
-    if (roll === uniques) {
+    if (roll === partsOfBingo.generateRandom(90)) {
       console.log("pain");
       partsOfBingo.removeItems(".child");
     }
@@ -97,7 +97,12 @@ DOMSelectors.generateCard.addEventListener("click", function () {
   partsOfBingo.bingoBalls();
 });
 
-let randomArray = [partsOfBingo.generateRandom(90)];
+/* let i = 1;
+for (i = 1; i <= 25; i++) var arr = [partsOfBingo.generateRandom(90)];
+{
+  console.log(arr);
+} */
+
 let uniques = new Set([partsOfBingo.generateRandom(90)]);
 console.log(uniques);
 partsOfBingo.bingoBalls();
