@@ -8,7 +8,8 @@ let Counter = 25;
 const partsOfBingo = {
   bingoBalls: function () {
     bingoCard.card1.forEach((number) => {
-      storageArr.push(partsOfBingo.generateRandom(20));
+      storageArr.push(partsOfBingo.noDupes(10 ^ 5));
+      console.log(partsOfBingo.noDupes(25));
     });
   },
 
@@ -42,23 +43,32 @@ const partsOfBingo = {
   },
 
   randomNumber: function () {
-    const roll = partsOfBingo.generateRandom(20);
+    const roll = partsOfBingo.noDupes(20);
     partsOfBingo.removeItems(".roll");
     DOMSelectors.counterContainer.insertAdjacentHTML(
       "beforeend",
       `<p class = "roll">Your Roll: ${roll}</p>`
     );
     console.log(roll);
-    if (roll === storageArr) {
+    if (roll === test) {
       console.log("pain");
       partsOfBingo.removeItems(".child");
     }
   },
 
-  noDupes: function () {
-    const duplicates = [];
-    random = Number(random)
-    if(duplicates.includes())
+  noDupes: function (maxNr) {
+    let random = (Math.random() * 90).toFixed();
+    random = Number(random);
+    if (!duplicates.includes(random)) {
+      duplicates.push(random);
+      return random;
+    } else if (duplicates.length < maxNr) {
+      //Recursively generate number
+      return partsOfBingo.noDupes(maxNr);
+    } else {
+      console.log("No more numbers available.");
+      return false;
+    }
   },
 
   rollCounter: function () {
@@ -100,7 +110,9 @@ DOMSelectors.generateCard.addEventListener("click", function () {
 });
 
 const storageArr = [];
-const uniques = new Set(storageArr);
-console.log(uniques);
+const duplicates = [];
+const test = [1, 2, 3, 4, 5];
+console.log(storageArr);
+
 partsOfBingo.bingoBalls();
 partsOfBingo.bingoBalls2();
