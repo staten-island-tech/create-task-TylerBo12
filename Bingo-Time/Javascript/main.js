@@ -6,13 +6,17 @@ import { bingoCard } from "./array";
 let Counter = 25;
 
 const partsOfBingo = {
-  bingoBalls: async function () {
+  bingoBalls: function () {
     bingoCard.card1.forEach((number) => {
-      DOMSelectors.parent.insertAdjacentHTML(
-        "beforeend",
-        `<sub class="child">${partsOfBingo.generateRandom(20)}</sub>`
-      );
+      storageArr.push(partsOfBingo.generateRandom(20));
     });
+  },
+
+  bingoBalls2: function () {
+    DOMSelectors.parent.insertAdjacentHTML(
+      "beforeend",
+      `<p class="child">${storageArr}</p>`
+    );
   },
 
   promises: function (Time) {
@@ -43,7 +47,7 @@ const partsOfBingo = {
       `<p class = "roll">Your Roll: ${roll}</p>`
     );
     console.log(roll);
-    if (roll === partsOfBingo.generateRandom(90)) {
+    if (roll === storageArr) {
       console.log("pain");
       partsOfBingo.removeItems(".child");
     }
@@ -56,8 +60,8 @@ const partsOfBingo = {
   },
 
   noDupes: function () {
-    if ((partsOfBingo.generateRandom(90) === 90, 1)) {
-      partsOfBingo.removeItems();
+    if ((partsOfBingo.generateRandom(90) === 1, 90)) {
+      partsOfBingo.removeItems(".child");
     }
   },
 
@@ -97,13 +101,11 @@ DOMSelectors.generateCard.addEventListener("click", function () {
   partsOfBingo.bingoBalls();
 });
 
-/* let i = 1;
-for (i = 1; i <= 25; i++) var arr = [partsOfBingo.generateRandom(90)];
-{
-  console.log(arr);
-} */
-
-let uniques = new Set([partsOfBingo.generateRandom(90)]);
-console.log(uniques);
+const test = [partsOfBingo.generateRandom(90)];
+const storageArr = [];
+console.log(storageArr);
+console.log(test);
 partsOfBingo.bingoBalls();
-partsOfBingo.noDupes();
+partsOfBingo.bingoBalls2();
+
+/* partsOfBingo.noDupes(); */
