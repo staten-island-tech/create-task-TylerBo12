@@ -14,7 +14,6 @@ const partsOfBingo = {
 
   bingoBalls2: function () {
     storageArr.forEach((number) => {
-      partsOfBingo.removeItems(".child");
       DOMSelectors.parent.insertAdjacentHTML(
         "beforeend",
         `<p class="child">${number}</p>`
@@ -56,16 +55,10 @@ const partsOfBingo = {
     }
   },
 
-  numberList: function (minimum = 1, maximum = 90) {
-    return Array.from({ length: maximum - minimum + 1 }).map(
-      (unused, index) => index + minimum
-    );
-  },
-
   noDupes: function () {
-    if ((partsOfBingo.generateRandom(90) === 1, 90)) {
-      partsOfBingo.removeItems(".child");
-    }
+    const duplicates = [];
+    random = Number(random)
+    if(duplicates.includes())
   },
 
   rollCounter: function () {
@@ -101,14 +94,13 @@ DOMSelectors.pickNumber.addEventListener("click", function () {
 DOMSelectors.generateCard.addEventListener("click", function () {
   partsOfBingo.removeItems(".child");
   partsOfBingo.removeItems(".gameOver");
+  storageArr.splice(0, 25);
   partsOfBingo.bingoBalls();
   partsOfBingo.bingoBalls2();
 });
 
 const storageArr = [];
 const uniques = new Set(storageArr);
-console.log(storageArr);
+console.log(uniques);
 partsOfBingo.bingoBalls();
 partsOfBingo.bingoBalls2();
-
-/* partsOfBingo.noDupes(); */
