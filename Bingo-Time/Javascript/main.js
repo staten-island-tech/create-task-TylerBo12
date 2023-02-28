@@ -13,10 +13,13 @@ const partsOfBingo = {
   },
 
   bingoBalls2: function () {
-    DOMSelectors.parent.insertAdjacentHTML(
-      "beforeend",
-      `<p class="child">${storageArr}</p>`
-    );
+    storageArr.forEach((number) => {
+      partsOfBingo.removeItems(".child");
+      DOMSelectors.parent.insertAdjacentHTML(
+        "beforeend",
+        `<p class="child">${number}</p>`
+      );
+    });
   },
 
   promises: function (Time) {
@@ -99,12 +102,12 @@ DOMSelectors.generateCard.addEventListener("click", function () {
   partsOfBingo.removeItems(".child");
   partsOfBingo.removeItems(".gameOver");
   partsOfBingo.bingoBalls();
+  partsOfBingo.bingoBalls2();
 });
 
-const test = [partsOfBingo.generateRandom(90)];
 const storageArr = [];
+const uniques = new Set(storageArr);
 console.log(storageArr);
-console.log(test);
 partsOfBingo.bingoBalls();
 partsOfBingo.bingoBalls2();
 
