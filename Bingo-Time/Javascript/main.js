@@ -3,34 +3,35 @@ import "../Styles/variables.css";
 import { DOMSelectors } from "./DOMselectors";
 import { bingoCard } from "./array";
 
-let Counter = 25;
+let Counter = 35;
 
 const partsOfBingo = {
-  bingoBalls: function () {
-    bingoCard.card1.forEach((number) => {
-      storageArr.push(partsOfBingo.noDupes(10 ^ 5));
-      console.log(partsOfBingo.noDupes(25));
-    });
-  },
-
-  bingoBalls2: function () {
-    storageArr.forEach((number) => {
-      DOMSelectors.parent.insertAdjacentHTML(
-        "beforeend",
-        `<p class="child">${number}</p>`
-      );
-    });
-  },
-
-  promises: function (Time) {
-    new Promise((resolveFirst) => {
-      setTimeout(resolveFirst, Time);
-    });
-  },
-
   generateRandom: function (max) {
     const index = Math.round(Math.random() * max);
     return index;
+  },
+
+  removeItems: function (Items) {
+    const numbers = document.querySelectorAll(Items);
+    const numbersArray = Array.from(numbers);
+    numbersArray.forEach((number) => {
+      number.remove();
+    });
+  },
+
+  randomNumber: function () {
+    const roll =
+      partsOfBingo.noDupes(90) && partsOfBingo.noDupes2(storageArr, 1);
+    partsOfBingo.removeItems(".roll");
+    DOMSelectors.counterContainer.insertAdjacentHTML(
+      "beforeend",
+      `<p class = "roll">Your Roll: ${roll}</p>`
+    );
+    console.log(roll);
+    if (roll === storageArr) {
+      console.log("pain");
+      partsOfBingo.removeItems(".child");
+    }
   },
 
   display: function () {
@@ -42,17 +43,18 @@ const partsOfBingo = {
     return Counter;
   },
 
-  randomNumber: function () {
-    const roll = partsOfBingo.noDupes(20);
-    partsOfBingo.removeItems(".roll");
-    DOMSelectors.counterContainer.insertAdjacentHTML(
-      "beforeend",
-      `<p class = "roll">Your Roll: ${roll}</p>`
-    );
-    console.log(roll);
-    if (roll === test) {
-      console.log("pain");
+  rollCounter: function () {
+    while (Counter <= 35 && Counter > 0) {
+      partsOfBingo.display();
+      return Counter;
+    }
+    if (Counter === 0) {
       partsOfBingo.removeItems(".child");
+      partsOfBingo.removeItems(".gameOver");
+      DOMSelectors.parent.insertAdjacentHTML(
+        "beforeend",
+        `<p class = "gameOver">Game Over :(</p>`
+      );
     }
   },
 
@@ -71,26 +73,29 @@ const partsOfBingo = {
     }
   },
 
-  rollCounter: function () {
-    while (Counter <= 25 && Counter > 0) {
-      partsOfBingo.display();
-      return Counter;
+  noDupes2: function (Array, n) {
+    const output = [];
+    for (let i = 0; i < n; i++) {
+      const randomIndex = Math.floor(Math.random() * Array.length);
+      output.push(Array[randomIndex]);
+      Array.splice(randomIndex, 1);
     }
-    if (Counter === 0) {
-      partsOfBingo.removeItems(".child");
-      partsOfBingo.removeItems(".gameOver");
-      DOMSelectors.parent.insertAdjacentHTML(
-        "beforeend",
-        `<p class = "gameOver">Game Over :(</p>`
-      );
-    }
+    return output;
   },
 
-  removeItems: function (Items) {
-    const numbers = document.querySelectorAll(Items);
-    const numbersArray = Array.from(numbers);
-    numbersArray.forEach((number) => {
-      number.remove();
+  bingoBalls: function () {
+    bingoCard.card1.forEach((number) => {
+      storageArr.push(partsOfBingo.noDupes(100));
+      /* console.log(partsOfBingo.noDupes2(storageArr, 1)); */
+    });
+  },
+
+  bingoBalls2: function () {
+    storageArr.forEach((number) => {
+      DOMSelectors.parent.insertAdjacentHTML(
+        "beforeend",
+        `<p class="child">${number}</p>`
+      );
     });
   },
 };
@@ -105,13 +110,14 @@ DOMSelectors.generateCard.addEventListener("click", function () {
   partsOfBingo.removeItems(".child");
   partsOfBingo.removeItems(".gameOver");
   storageArr.splice(0, 25);
+  duplicates.splice(0, 90);
   partsOfBingo.bingoBalls();
   partsOfBingo.bingoBalls2();
 });
 
+/* const tempArr = DOMSelectors.bingoCard.card2; */
 const storageArr = [];
 const duplicates = [];
-const test = [1, 2, 3, 4, 5];
 console.log(storageArr);
 
 partsOfBingo.bingoBalls();
