@@ -3,8 +3,6 @@ import "../Styles/variables.css";
 import { DOMSelectors } from "./DOMselectors";
 import { bingoCard } from "./array";
 
-let Counter = 35;
-
 const partsOfBingo = {
   generateRandom: function (max) {
     const index = Math.round(Math.random() * max);
@@ -32,6 +30,7 @@ const partsOfBingo = {
       console.log("pain");
       partsOfBingo.removeItems(".child");
     }
+    return roll;
   },
 
   display: function () {
@@ -48,6 +47,7 @@ const partsOfBingo = {
       partsOfBingo.display();
       return Counter;
     }
+
     if (Counter === 0) {
       partsOfBingo.removeItems(".child");
       partsOfBingo.removeItems(".gameOver");
@@ -92,6 +92,8 @@ const partsOfBingo = {
 
   bingoBalls2: function () {
     storageArr.forEach((number) => {
+      if (number === roll) {
+      }
       DOMSelectors.parent.insertAdjacentHTML(
         "beforeend",
         `<p class="child">${number}</p>`
@@ -119,6 +121,7 @@ DOMSelectors.generateCard.addEventListener("click", function () {
 const storageArr = [];
 const duplicates = [];
 console.log(storageArr);
+let Counter = 35;
 
 partsOfBingo.bingoBalls();
 partsOfBingo.bingoBalls2();
