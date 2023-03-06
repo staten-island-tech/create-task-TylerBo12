@@ -4,11 +4,6 @@ import { DOMSelectors } from "./DOMselectors";
 import { bingoCard } from "./array";
 
 const partsOfBingo = {
-  generateRandom: function (max) {
-    const index = Math.round(Math.random() * max);
-    return index;
-  },
-
   removeItems: function (Items) {
     const numbers = document.querySelectorAll(Items);
     const numbersArray = Array.from(numbers);
@@ -25,7 +20,6 @@ const partsOfBingo = {
       `<p class = "roll">Your Roll: ${rN}</p>`
     );
     console.log(rN);
-    return rN;
   },
 
   display: function () {
@@ -39,6 +33,7 @@ const partsOfBingo = {
 
   rollCounter: function () {
     while (Counter <= 25 && Counter > 0) {
+      partsOfBingo.removeItems(".counter");
       partsOfBingo.display();
       return Counter;
     }
@@ -66,7 +61,7 @@ const partsOfBingo = {
   noDupes2: function (Array, n) {
     const output = [];
     for (let i = 0; i < n; i++) {
-      const randomIndex = Math.floor(Math.random() * Array.length);
+      const randomIndex = Math.round(Math.random() * Array.length);
       output.push(Array[randomIndex]);
       Array.splice(randomIndex, 1);
     }
@@ -76,13 +71,12 @@ const partsOfBingo = {
   bingoBalls: function () {
     bingoCard.card1.forEach((number) => {
       storageArr.push(partsOfBingo.noDupes(100));
-      /* console.log(partsOfBingo.noDupes2(storageArr, 1)); */
     });
   },
 
   bingoBalls2: function () {
     storageArr.forEach((number) => {
-      if (number === partsOfBingo.generateRandom(90)) {
+      if (number === "sa") {
         console.log("yayayayay");
         partsOfBingo.removeItems(".child");
       }
@@ -96,7 +90,6 @@ const partsOfBingo = {
 
 DOMSelectors.pickNumber.addEventListener("click", function () {
   partsOfBingo.removeItems(".gameOver");
-  partsOfBingo.removeItems(".counter");
   partsOfBingo.rollCounter();
   partsOfBingo.randomNumber();
 });
@@ -115,5 +108,5 @@ const duplicates = [];
 
 partsOfBingo.bingoBalls();
 partsOfBingo.bingoBalls2();
+
 console.log(storageArr);
-console.log(storageArr.at(1, 25));
