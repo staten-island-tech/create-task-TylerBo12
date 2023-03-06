@@ -65,6 +65,11 @@ body{
   font-size: 10rem;
 }
 
+.tryAgain{
+  color: aliceblue;
+  font-size: 4rem;
+}
+
 .pickNumber, .generateCard{
   width: 50rem;
   height: 25rem;  

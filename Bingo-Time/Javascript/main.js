@@ -3,6 +3,8 @@ import "../Styles/variables.css";
 import { DOMSelectors } from "./DOMselectors";
 import { bingoCard } from "./array";
 
+let rN = 0;
+
 const partsOfBingo = {
   removeItems: function (Items) {
     const numbers = document.querySelectorAll(Items);
@@ -13,7 +15,7 @@ const partsOfBingo = {
   },
 
   randomNumber: function () {
-    const rN = partsOfBingo.noDupes(90) && partsOfBingo.noDupes2(storageArr, 1);
+    rN = partsOfBingo.noDupes(100) && partsOfBingo.noDupes2(storageArr, 1);
     partsOfBingo.removeItems(".roll");
     DOMSelectors.counterContainer.insertAdjacentHTML(
       "beforeend",
@@ -31,18 +33,18 @@ const partsOfBingo = {
     return Counter;
   },
 
-  rollCounter: function () {
-    while (Counter <= 25 && Counter > 0) {
+  rollCounter: function (rollsLeft) {
+    while (rollsLeft <= 25 && rollsLeft > -1) {
       partsOfBingo.removeItems(".counter");
       partsOfBingo.display();
-      return Counter;
+      return rollsLeft;
     }
-    if (Counter === 0) {
+    if (rollsLeft < 1) {
       partsOfBingo.removeItems(".child");
       partsOfBingo.removeItems(".gameOver");
       DOMSelectors.parent.insertAdjacentHTML(
         "beforeend",
-        `<p class = "gameOver">Game Over :(</p>`
+        `<p class = "gameOver">Game Over :(</p> <p class = "tryAgain">(To try again refresh the page)</p>`
       );
     }
   },
@@ -53,8 +55,8 @@ const partsOfBingo = {
       duplicates.push(random);
       return random;
     } else if (duplicates.length < maxNr) {
-      //Recursively generate number
       return partsOfBingo.noDupes(maxNr);
+    } else if (Counter < 0) {
     }
   },
 
@@ -65,21 +67,19 @@ const partsOfBingo = {
       output.push(Array[randomIndex]);
       Array.splice(randomIndex, 1);
     }
+    if (Counter < 0) {
+    }
     return output;
   },
 
   bingoBalls: function () {
     bingoCard.card1.forEach((number) => {
-      storageArr.push(partsOfBingo.noDupes(100));
+      storageArr.push(partsOfBingo.noDupes(100000));
     });
   },
 
   bingoBalls2: function () {
     storageArr.forEach((number) => {
-      if (number === "sa") {
-        console.log("yayayayay");
-        partsOfBingo.removeItems(".child");
-      }
       DOMSelectors.parent.insertAdjacentHTML(
         "beforeend",
         `<p class="child">${number}</p>`
@@ -90,7 +90,8 @@ const partsOfBingo = {
 
 DOMSelectors.pickNumber.addEventListener("click", function () {
   partsOfBingo.removeItems(".gameOver");
-  partsOfBingo.rollCounter();
+  partsOfBingo.removeItems(".tryAgain");
+  partsOfBingo.rollCounter(Counter);
   partsOfBingo.randomNumber();
 });
 
@@ -100,13 +101,13 @@ DOMSelectors.generateCard.addEventListener("click", function () {
   duplicates.splice(0, 90);
   partsOfBingo.bingoBalls();
   partsOfBingo.bingoBalls2();
+  console.log(storageArr);
 });
 
-let Counter = 25;
+let Counter = 24;
 const storageArr = [];
 const duplicates = [];
 
+console.log(rN);
 partsOfBingo.bingoBalls();
 partsOfBingo.bingoBalls2();
-
-console.log(storageArr);
